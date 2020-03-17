@@ -1,0 +1,33 @@
+{
+  "name": "glslify-squish",
+  "version": "1.0.0",
+  "description": "A transform stream for glslify that minifys with optional mangling",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/captainyakult/glslify-squish.git"
+  },
+  "keywords": [
+    "glsl",
+    "glslify",
+    "minify",
+    "stackgl",
+    "transform",
+    "threejs",
+    "react",
+    "create-react-app",
+    "stream",
+    "shader",
+    "mangle",
+    "webgl"
+  ],
+  "author": "Jack Simpson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/captainyakult/glslify-squish/issues"
+  },
+  "homepage": "https://github.com/captainyakult/glslify-squish#readme"
+}
