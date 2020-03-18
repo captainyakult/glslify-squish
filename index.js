@@ -1,4 +1,4 @@
-
+const tokenizer = require('glsl-tokenizer/string');
 
 module.exports = transform;
 module.exports.sync = transform;
@@ -10,6 +10,10 @@ function transform(filename, src, opts, done) {
   console.log('src', src);
   console.log('opts', opts);
   console.log('done', done);
+
+  const tokens = tokenizer(src);
+
+  console.log('tokens', tokens);
 
   // src = src.replace(regexLong, function(whole, r, g, b, a) {
   //   return makeVec(r, g, b, a)

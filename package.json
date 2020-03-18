@@ -29,5 +29,8 @@
   "bugs": {
     "url": "https://github.com/captainyakult/glslify-squish/issues"
   },
-  "homepage": "https://github.com/captainyakult/glslify-squish#readme"
+  "homepage": "https://github.com/captainyakult/glslify-squish#readme",
+  "dependencies": {
+    "glsl-tokenizer": "^2.1.5"
+  }
 }
