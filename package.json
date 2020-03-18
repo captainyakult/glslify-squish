@@ -1,6 +1,6 @@
 {
   "name": "glslify-squish",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A transform stream for glslify that minifys with optional mangling",
   "main": "index.js",
   "scripts": {
@@ -31,6 +31,10 @@
   },
   "homepage": "https://github.com/captainyakult/glslify-squish#readme",
   "dependencies": {
-    "glsl-tokenizer": "^2.1.5"
+    "glsl-deparser": "^1.0.0",
+    "glsl-min-stream": "^1.0.0",
+    "glsl-parser": "^2.0.1",
+    "glsl-tokenizer": "^2.1.5",
+    "string-to-stream": "^3.0.1"
   }
 }
