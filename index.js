@@ -39,7 +39,7 @@ const transform = (filename, src, opts, done) => {
 
   stream.on('end', () => {
     // console.log("before", src);
-    console.log("after", data);
+    // console.log("after", data);
     if (typeof done === 'function') {
       done(null, data);
     }

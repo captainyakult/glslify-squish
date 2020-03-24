@@ -1,6 +1,6 @@
 {
   "name": "glslify-squish",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A transform stream for glslify that minifys with optional mangling",
   "main": "index.js",
   "scripts": {
