@@ -1,37 +1,50 @@
 
-import tokenizer from 'glsl-tokenizer/stream'
-import parser from 'glsl-parser';
-import minify from 'glsl-min-stream';
-import deparser from 'glsl-deparser';
-import stringToStream from 'string-to-stream';
+const minify = require('./glsl-minify-stream');
+
+const tokenizer = require('glsl-tokenizer/stream');
+const parser = require('glsl-parser/stream');
+const deparser = require('glsl-deparser');
+const { Readable, Writable } = require('stream');
 
 
 const transform = (filename, src, opts, done) => {
 
-  console.log('\nWe are inside the GLSL pipe!');
-  console.log('filename', filename);
-  console.log('src', src);
-  console.log('opts', opts);
-  console.log('done', done);
+  let data = '';
 
-  const tokens = stringToStream(src)
-    .pipe(tokenizer())
-    .on('error', error => console.error(`Tokenizer: ${error}`));
+  const getData = () => {
+    return new Writable({
+      objectMode: true,
+      write: (strData, _, done) => {
+        // console.log('<-', strData)
+        data += strData;
+        done()
+      }
+    })
+  }
 
-  console.log(tokens);
+  const stream = Readable.from(src)
 
-  // .pipe(parser())
-  //   .on('error', error => console.error(`Parser: ${error}`))
-  //   .pipe(minify())
-  //   .on('error', error => console.error(`Minify: ${error}`))
-  //   .pipe(deparser(false))
-  //   .on('error', error => console.error(`Deparser: ${error}`))
+  stream
+  .pipe(tokenizer())
+  .on('error', error => console.error(`Tokenizer: ${error}`))
+  .pipe(parser())
+  .on('error', error => console.error(`Parser: ${error}`))
+  .pipe(minify())
+  .on('error', error => console.error(`Minify: ${error}`))
+  .pipe(deparser(false))
+  .on('error', error => console.error(`Deparser: ${error}`))
+  .pipe(getData())
 
-  // src = src.replace(regexLong, function(whole, r, g, b, a) {
-  //   return makeVec(r, g, b, a)
-  // });
+  // stream.on('data', (data) => { console.log('<-', data) })
 
-  if (typeof done === 'function') done(null, src);
+  stream.on('end', () => {
+    // console.log("before", src);
+    console.log("after", data);
+    if (typeof done === 'function') {
+      done(null, data);
+    }
+  });
+
   return src
 };
 
